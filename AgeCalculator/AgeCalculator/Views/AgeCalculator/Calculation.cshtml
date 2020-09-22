@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Calculation";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<div class="jumbotron">
+    <div style="margin-left:50px;">
+        <h3><b><h>Age Calculator</h></b></h3>
+        <p>
+            The Age Calculator can determine the age or interval between two dates. The calculated age will be displayed in years, months, weeks, days .
+
+        </p><br />
+        <div class="form-group">
+            <label for="usr">Date of Birth:</label>
+            <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth">
+        </div>
+        <div class="form-group">
+            <label for="usr">Current Date:</label>
+            <input type="date" class="form-control" name="currentDate" id="currentDate">
+        </div>
+
+        <input type="button" class="btn btn-primary" name="Calculate" value="Calculate" onclick="calculate()" />
+        <br />
+        <div class="form-group">
+            <label for="usr">Age:</label>
+            <input readonly type="text" class="form-control" id="ageResult" name="ageResult">
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+            function calculate() {
+
+                var dateOfBirth = document.getElementById("dateOfBirth").value;
+                var currentDate = document.getElementById("currentDate").value;
+
+                var sdt = new Date(dateOfBirth);
+                var difdt = new Date(new Date() - sdt);
+
+                var resultOfAge = (difdt.toISOString().slice(0, 4) - 1970) + " Years " + (difdt.getMonth() + 1) + " Months " + difdt.getDate() + " Days";
+                document.getElementById("ageResult").value = resultOfAge;
+
+            }
+</script>
+
+
